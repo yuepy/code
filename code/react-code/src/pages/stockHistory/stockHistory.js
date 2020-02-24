@@ -7,7 +7,7 @@ export default class Warehousing extends Component {
         return(
             <div className='allStock'>
                 <CommonLeftMenu />
-                <div className='rightContent'>商品入库</div>
+                <div className='rightContent'>商品出库记录</div>
             </div>
         )
     }

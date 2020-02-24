@@ -7,12 +7,12 @@ export default class Login extends Component {
         super();
     }
     loginIn=(username,password)=>{
-        AJAX.AJAX(utils.loginIn,'POST',"username="+username+"&password="+password+"",true,this.success,this.valueerror);
+        var header = {head:'Content-Type',value:'application/x-www-form-urlencoded'};
+        AJAX.AJAX(utils.loginIn,'POST',"username="+username+"&password="+password+"",header,this.success,this.valueerror);
     }
     success=(res)=>{
         res = JSON.parse(res);
         if(res.msg == '成功'){
-            debugger;
             document.cookie='JSESSION'+res.data.token;
             window.location.href = '/index';
         }else{

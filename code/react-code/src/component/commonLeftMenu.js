@@ -13,8 +13,8 @@ export default class CommonLeftMenu extends Component {
                     <ul className='menu'>
                         <li><Link to='/index'>全部库存</Link></li>
                         <li><Link to='/warehousing'>商品入库</Link></li>
-                        <li><Link to='/index'>商品出库</Link></li>
-                        <li><Link to='/index'>商品出库记录</Link></li>
+                        <li><Link to='/outStock'>商品出库</Link></li>
+                        <li><Link to='/stockHistory'>商品出库记录</Link></li>
                     </ul>
                 </div>
             </div>
