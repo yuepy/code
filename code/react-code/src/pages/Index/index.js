@@ -1,17 +1,17 @@
 import React, {Component} from 'react';
 import 'pageStyle/index.less';
 import CommonLeftMenu from 'component/commonLeftMenu.js';
+import * as AJAX from 'component/AJAX.js';
+import * as utils from 'component/utils.js';
 export default class Index extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            count: 0
+           
         }
     }
-    _handleClick() {
-        this.setState({
-            count: ++this.state.count
-        });
+    componentDidMount=()=>{
+
     }
     render() {
         return (

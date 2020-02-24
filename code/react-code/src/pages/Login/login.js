@@ -1,23 +1,29 @@
 import React, {Component} from 'react';
 import '../../css/login.less';
-import * as AJAX from 'component/AJAX.js'
-import * as utils from 'component/utils.js'
+import * as AJAX from 'component/AJAX.js';
+import * as utils from 'component/utils.js';
 export default class Login extends Component {
     constructor(){
         super();
     }
     loginIn=(username,password)=>{
-        debugger;
-        AJAX.AJAX(utils.loginIn,'POST',"username="+username+"&password="+password+"",success,error);
+        AJAX.AJAX(utils.loginIn,'POST',"username="+username+"&password="+password+"",true,this.success,this.valueerror);
     }
     success=(res)=>{
-        debugger;
+        res = JSON.parse(res);
+        if(res.msg == '成功'){
+            debugger;
+            document.cookie='JSESSION'+res.data.token;
+            window.location.href = '/index';
+        }else{
+            alert(res.msg);
+            window.location.reload();
+        }
     }
     error=()=>{
-        debugger
+        alert('请求失败,请重试');
     }
     submit=(event)=>{
-        debugger;
         var username = event.target.parentNode.querySelector('.user').value;
         var password = event.target.parentNode.querySelector('.pwd').value;
         if(!username){
@@ -30,7 +36,7 @@ export default class Login extends Component {
             window.location.reload();
             return;
         }
-        loginIn(username,password);
+        this.loginIn(username,password);
     }
     render() {
         return (
@@ -38,8 +44,8 @@ export default class Login extends Component {
                 <div className='login-loginIn'>
                     <h1>用户登录</h1>
                     <input type='text' placeholder='用户名' className='user entry'/>
-                    <input type='password' placeholder='密码' className='pwd entry' />
-                    <button onClick={(e)=>{alert('123')}>登录</button>
+                    <input type='password' placeholder='密码' className='pwd entry'/>
+                    <button onClick={this.submit}>登录</button>
                     <div className='slip'>
                         <div>
                             <input type='radio' />
