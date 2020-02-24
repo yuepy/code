@@ -60,7 +60,14 @@ module.exports = {
     devServer:{
         contentBase:path.join(__dirname,'/'),
         historyApiFallback:true,
-        host:'0.0.0.0'
+        host:'0.0.0.0',
+        proxy: {
+            '/api': {
+              target: 'http://106.12.194.98',
+              changeOrigin: true,     // target是域名的话，需要这个参数，
+              secure: false,          // 设置支持https协议的代理
+            },
+        }
     },
     plugins:[
         new ManifestPlugin(),
@@ -81,4 +88,4 @@ module.exports = {
     //--color 控制台输出彩色信息 --progress 编译进度输出 --hot 模块热替换只更新自己修改部分  
     //--hot需要在输入文件内添加监听  module.hot.accept  监听文件变化 . 不刷新页面进行修改
     //"react-hot-loader/babel"  在.babelrc里面配置 pulgins[ "react-hot-loader/babel" ] 针对jsx特性的热更新
-};
+}
